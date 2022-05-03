@@ -43,7 +43,6 @@ class JointbertDataset(data.Dataset):
         self.pairs = self.pairs[:size]
         self.labels = self.labels[:size]
         self.ids = self.ids[:size]
-        print(self.ids)
 
 
     def __len__(self):
