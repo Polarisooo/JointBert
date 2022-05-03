@@ -78,8 +78,8 @@ def classify(sentence_pairs, model,
     inputs = sentence_pairs
     # print('max_len =', max_len)
     dataset = JointbertDataset(inputs,
-                           max_len=max_len,
-                           lm=lm)
+                               max_len=max_len,
+                               lm=lm)
     # print(dataset[0])
     iterator = data.DataLoader(dataset=dataset,
                                batch_size=len(dataset),
@@ -187,8 +187,8 @@ def tune_threshold(config, model, hp):
 
     # load dev sets
     valid_dataset = JointbertDataset(validset,
-                                 max_len=hp.max_len,
-                                 lm=hp.lm)
+                                     max_len=hp.max_len,
+                                     lm=hp.lm)
 
     # print(valid_dataset[0])
 
@@ -292,3 +292,19 @@ if __name__ == "__main__":
             max_len=hp.max_len,
             lm=hp.lm,
             threshold=threshold)
+
+    # record prediction result with true labels
+    label = []
+    with open('output/output_small.jsonl', 'r', encoding='utf8') as fp:
+        for line in fp.readlines():
+            js_l = json.loads(line)
+            label.append(js_l["match"])
+    h = open("test_result/test_result.txt", "w", encoding='utf-8')
+    count = 0
+    with open("data/er_magellan/" + hp.task + "/test.txt", "r") as f:
+        for i in f.readlines():
+            j = i.split("\t")
+            j = j[2].split("\n")
+            h.writelines(j[0] + " " + str(label[count]) + "\n")
+            count += 1
+    h.close()
