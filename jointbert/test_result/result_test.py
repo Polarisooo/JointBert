@@ -20,9 +20,9 @@ def testResult(result_file):
             j = i[1].split("\n")
             truelabels.append(int(i[0]))
             predicts.append(int(j[0]))
-    print(metrics.precision_score(truelabels, predicts))
-    print(metrics.recall_score(truelabels, predicts))
-    print(metrics.f1_score(truelabels, predicts))
+    print("precision_score:", metrics.precision_score(truelabels, predicts))
+    print("recall_score:", metrics.recall_score(truelabels, predicts))
+    print("f1_score:", metrics.f1_score(truelabels, predicts))
 
 
 if __name__ == "__main__":
