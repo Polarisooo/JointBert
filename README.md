@@ -9,4 +9,4 @@ VLDB2021-Dual-Objective Fine-Tuning of BERT for Entity Matching<br>
 ---
 ![image](https://github.com/Polarisooo/JointBert/blob/main/Jointbert.png)<br>
 ## Colab演示
-[colab]https://colab.research.google.com/drive/1z6dtv5SBc9ymB1l8lxP9uKh2RnRR-2nY?usp=sharing
+[colab](https://colab.research.google.com/drive/1z6dtv5SBc9ymB1l8lxP9uKh2RnRR-2nY?usp=sharing)
