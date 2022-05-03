@@ -1,0 +1,37 @@
+[
+  {
+  "name": "Structured/Cameras",
+  "task_type": "classification",
+  "num_classes_multi": 562,
+  "vocab": ["0", "1"],
+  "trainset": "data/er_magellan/Structured/Cameras/train.txt",
+  "validset": "data/er_magellan/Structured/Cameras/valid.txt",
+  "testset": "data/er_magellan/Structured/Cameras/test.txt"
+  },
+  {
+  "name": "Structured/Computers",
+  "task_type": "classification",
+  "num_classes_multi": 745,
+  "vocab": ["0", "1"],
+  "trainset": "data/er_magellan/Structured/Computers/train.txt",
+  "validset": "data/er_magellan/Structured/Computers/valid.txt",
+  "testset": "data/er_magellan/Structured/Computers/test.txt"
+  },
+  {
+  "name": "Structured/Shoes",
+  "task_type": "classification",
+  "num_classes_multi": 562,
+  "vocab": ["0", "1"],
+  "trainset": "data/er_magellan/Structured/Shoes/train.txt",
+  "validset": "data/er_magellan/Structured/Shoes/valid.txt",
+  "testset": "data/er_magellan/Structured/Shoes/test.txt"
+  },
+  {
+  "name": "Structured/Watches",
+  "task_type": "classification",
+  "num_classes_multi": 615,
+  "vocab": ["0", "1"],
+  "trainset": "data/er_magellan/Structured/Watches/train.txt",
+  "validset": "data/er_magellan/Structured/Watches/valid.txt",
+  "testset": "data/er_magellan/Structured/Watches/test.txt"
+  }]
