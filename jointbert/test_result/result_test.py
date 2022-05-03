@@ -1,7 +1,9 @@
+import argparse
+
 from sklearn import metrics
 
 
-def testResult(result_file="test_result.txt"):
+def testResult(result_file):
     """
 
     :param result_file: 文件中每一行都是真实值 预测值的形式
@@ -21,3 +23,10 @@ def testResult(result_file="test_result.txt"):
     print(metrics.precision_score(truelabels, predicts))
     print(metrics.recall_score(truelabels, predicts))
     print(metrics.f1_score(truelabels, predicts))
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--result_file", type=str, default="test_result.txt")
+    hp = parser.parse_args()
+    testResult(hp.result_file)
