@@ -1,5 +1,5 @@
 # JointBert
-===
+---
 实体匹配及实体ID联合模型，改自ditto模型（https://github.com/megagonlabs/ditto）<br>
 ## 模型来源
 ---
