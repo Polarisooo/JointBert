@@ -18,9 +18,9 @@ from tqdm import tqdm
 from apex import amp
 from scipy.special import softmax
 
-from ditto_light.ditto import evaluate, DittoModel
-from ditto_light.exceptions import ModelNotFoundError
-from ditto_light.dataset import DittoDataset
+from jointbert_light.jointbert import evaluate, JointbertModel
+from jointbert_light.exceptions import ModelNotFoundError
+from jointbert_light.dataset import JointbertDataset
 
 
 def set_seed(seed: int):
@@ -77,7 +77,7 @@ def classify(sentence_pairs, model,
     """
     inputs = sentence_pairs
     # print('max_len =', max_len)
-    dataset = DittoDataset(inputs,
+    dataset = JointbertDataset(inputs,
                            max_len=max_len,
                            lm=lm)
     # print(dataset[0])
@@ -85,7 +85,7 @@ def classify(sentence_pairs, model,
                                batch_size=len(dataset),
                                shuffle=False,
                                num_workers=0,
-                               collate_fn=DittoDataset.pad)
+                               collate_fn=JointbertDataset.pad)
 
     # prediction
     all_probs = []
@@ -118,7 +118,7 @@ def predict(input_path, output_path, config,
         input_path (str): the input file path
         output_path (str): the output file path
         config (Dictionary): task configuration
-        model (DittoModel): the model for prediction
+        model (JointbertModel): the model for prediction
         batch_size (int): the batch size
         max_len (int, optional): the max sequence length
         threshold (float, optional): the threshold of the 0's class
@@ -186,7 +186,7 @@ def tune_threshold(config, model, hp):
     set_seed(123)
 
     # load dev sets
-    valid_dataset = DittoDataset(validset,
+    valid_dataset = JointbertDataset(validset,
                                  max_len=hp.max_len,
                                  lm=hp.lm)
 
@@ -196,7 +196,7 @@ def tune_threshold(config, model, hp):
                                  batch_size=64,
                                  shuffle=False,
                                  num_workers=0,
-                                 collate_fn=DittoDataset.pad)
+                                 collate_fn=JointbertDataset.pad)
 
     # acc, prec, recall, f1, v_loss, th = eval_classifier(model, valid_iter,
     #                                                     get_threshold=True)
@@ -255,7 +255,7 @@ def load_model(task, path, lm, use_gpu, fp16=True):
     else:
         device = 'cpu'
 
-    model = DittoModel(device=device, lm=lm, alpha_aug=0.8, class_num=config['num_classes_multi'])
+    model = JointbertModel(device=device, lm=lm, alpha_aug=0.8, class_num=config['num_classes_multi'])
 
     saved_state = torch.load(checkpoint, map_location=lambda storage, loc: storage)
     model.load_state_dict(saved_state['model'])

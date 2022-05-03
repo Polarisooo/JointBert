@@ -8,8 +8,8 @@ import random
 
 sys.path.insert(0, "Snippext_public")
 
-from ditto_light.dataset import DittoDataset
-from ditto_light.ditto import train
+from jointbert_light.dataset import JointbertDataset
+from jointbert_light.jointbert import train
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -55,12 +55,12 @@ if __name__ == "__main__":
     classnum = config['num_classes_multi']
 
     # load train/dev/test sets
-    train_dataset = DittoDataset(trainset,
+    train_dataset = JointbertDataset(trainset,
                                  lm=hp.lm,
                                  max_len=hp.max_len,
                                  size=hp.size)
-    valid_dataset = DittoDataset(validset, lm=hp.lm)
-    test_dataset = DittoDataset(testset, lm=hp.lm)
+    valid_dataset = JointbertDataset(validset, lm=hp.lm)
+    test_dataset = JointbertDataset(testset, lm=hp.lm)
 
     # train and evaluate the model
     train(train_dataset,

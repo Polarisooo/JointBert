@@ -14,7 +14,7 @@ def get_tokenizer(lm):
         return AutoTokenizer.from_pretrained(lm)
 
 
-class DittoDataset(data.Dataset):
+class JointbertDataset(data.Dataset):
     """EM dataset"""
 
     def __init__(self,

@@ -12,7 +12,7 @@ import sklearn.metrics as metrics
 import argparse
 import pandas as pd
 
-from .dataset import DittoDataset
+from .dataset import JointbertDataset
 from torch.utils import data
 from transformers import AutoModel, AdamW, get_linear_schedule_with_warmup
 from tensorboardX import SummaryWriter
@@ -22,7 +22,7 @@ lm_mp = {'roberta': 'roberta-base',
          'distilbert': 'distilbert-base-uncased'}
 
 
-class DittoModel(nn.Module):
+class JointbertModel(nn.Module):
     """A baseline model for EM."""
 
     def __init__(self, device='cuda', lm='roberta', alpha_aug=0.8, class_num=1000):
@@ -154,9 +154,9 @@ def train(trainset, validset, testset, run_tag, hp, classnum):
     """Train and evaluate the model
 
     Args:
-        trainset (DittoDataset): the training set
-        validset (DittoDataset): the validation set
-        testset (DittoDataset): the test set
+        trainset (JointbertDataset): the training set
+        validset (JointbertDataset): the validation set
+        testset (JointbertDataset): the test set
         run_tag (str): the tag of the run
         hp (Namespace): Hyper-parameters (e.g., batch_size,
                         learning rate, fp16)
@@ -186,7 +186,7 @@ def train(trainset, validset, testset, run_tag, hp, classnum):
 
     # initialize model, optimizer, and LR scheduler
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    model = DittoModel(device=device,
+    model = JointbertModel(device=device,
                        lm=hp.lm,
                        alpha_aug=hp.alpha_aug, class_num=classnum)
     model = model.cuda()
