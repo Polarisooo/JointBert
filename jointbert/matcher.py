@@ -270,8 +270,8 @@ def load_model(task, path, lm, use_gpu, fp16=True):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", type=str, default='Structured/Beer')
-    parser.add_argument("--input_path", type=str, default='input/candidates_small.jsonl')
-    parser.add_argument("--output_path", type=str, default='output/matched_small.jsonl')
+    parser.add_argument("--input_path", type=str, default='data/er_magellan/Structured/Beer/test.txt')
+    parser.add_argument("--output_path", type=str, default='output/output_result.jsonl')
     parser.add_argument("--lm", type=str, default='distilbert')
     parser.add_argument("--use_gpu", dest="use_gpu", action="store_true")
     parser.add_argument("--fp16", dest="fp16", action="store_true")
@@ -295,11 +295,11 @@ if __name__ == "__main__":
 
     # record prediction result with true labels
     label = []
-    with open('output/output_small.jsonl', 'r', encoding='utf8') as fp:
+    with open(hp.output_path, 'r', encoding='utf8') as fp:
         for line in fp.readlines():
             js_l = json.loads(line)
             label.append(js_l["match"])
-    h = open("test_result/test_result.txt", "w", encoding='utf-8')
+    h = open("test_result/" + hp.task + "_test_result.txt", "w", encoding='utf-8')
     count = 0
     with open("data/er_magellan/" + hp.task + "/test.txt", "r") as f:
         for i in f.readlines():
