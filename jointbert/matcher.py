@@ -269,8 +269,8 @@ def load_model(task, path, lm, use_gpu, fp16=True):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--task", type=str, default='Structured/Beer')
-    parser.add_argument("--input_path", type=str, default='data/er_magellan/Structured/Beer/test.txt')
+    parser.add_argument("--task", type=str, default='Structured/Computers')
+    parser.add_argument("--input_path", type=str, default='data/er_magellan/Structured/Computers/test.txt')
     parser.add_argument("--output_path", type=str, default='output/output_result.jsonl')
     parser.add_argument("--lm", type=str, default='distilbert')
     parser.add_argument("--use_gpu", dest="use_gpu", action="store_true")
