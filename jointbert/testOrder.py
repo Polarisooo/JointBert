@@ -16,10 +16,12 @@ for order in range(6):
             i = i.split("\t")
             for index in range(2):
                 j = i[index].split("COL")
+                temp1 = j[orders[order][0]]
+                temp2 = j[orders[order][1]]
+                temp3 = j[orders[order][2]]
                 j[1] = orders[order][0]
                 j[2] = orders[order][1]
                 j[3] = orders[order][2]
-                j[4] = orders[order][3]
                 i[index] = 'COL'.join(j)
             i = '\t'.join(i)
             g.writelines(i)
